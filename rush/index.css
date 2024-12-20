@@ -1,0 +1,65 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+header {
+  margin-top: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 9%;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.51);
+}
+html {
+  color: white;
+  font-family: prompt;
+}
+.porttext {
+  font-size: 1.6rem;
+}
+
+nav a {
+  font-size: 1.4rem;
+  color: white;
+  margin-left: 4rem;
+  font-weight: 5001;
+  transition: 0.3s ease;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+  border-bottom: 2px solid white;
+  font-size: 1.6rem;
+}
+
+body {
+  background-image: url("./assets/mountain1.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.maindiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.maintext {
+  color: white;
+  transition: 1s ease;
+}
+
+.maintext:hover {
+  font-size: 2.6rem;
+  text-shadow: 0px 0px 35px rgb(255, 255, 255);
+}
