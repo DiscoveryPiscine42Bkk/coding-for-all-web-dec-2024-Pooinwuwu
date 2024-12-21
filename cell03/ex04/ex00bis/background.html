@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <link rel="stylesheet" href="background.css">
+
+    <title>change background</title>
+</head>
+<body>
+    <button>Click me!</button>
+  
+ <script>
+    $(document).ready(function(){     
+        function rand() {
+            return Math.floor(Math.random() * 256);
+        }
+        $('button').click(function() {
+            $('body').css({
+                'background-color':'rgb(' + rand() + ',' + rand() + ',' + rand() +')'
+            });           
+        });
+    });
+ </script>
+</body>
+</html>
