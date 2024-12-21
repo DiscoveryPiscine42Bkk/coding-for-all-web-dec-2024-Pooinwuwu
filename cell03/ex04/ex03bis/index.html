@@ -19,61 +19,55 @@
     <div id="ft_list"><br/></div>
 
     <script>
-         $(document).ready(function () {
-            loadToDo();
+            $(document).ready(function () {
+                loadToDo();
 
-            $("#newBtn").click(function () {
-                const todoText = prompt("Enter your TO DO:");
-                if (todoText && $.trim(todoText) !== "") {
-                    addToDo(todoText);
-                    saveToDo();
+                $("#newBtn").click(function () {
+                    const todoText = prompt("Enter your TO DO:");
+                    if (todoText && $.trim(todoText) !== "") {
+                        addToDo(todoText, false);
+                        saveToDo();
+                    }
+                });
+
+                function addToDo(text, prepend = false) {
+                    const $toDoDiv = $("<div></div>").text(text);
+                    $toDoDiv.click(function () {
+                        deleteToDo($toDoDiv);
+                    });
+
+                    const $list = $("#ft_list");
+                    if (prepend) {
+                        $list.prepend($toDoDiv);
+                    } else {
+                        $list.append($toDoDiv); 
+                    }
+                }
+
+                function deleteToDo($toDoDiv) {
+                    if (confirm("Do you really want to delete this TO DO?")) {
+                        $toDoDiv.remove();
+                        saveToDo(); 
+                    }
+                }
+
+                function saveToDo() {
+                    const toDoArray = [];
+                    $("#ft_list div").each(function () {
+                        toDoArray.push($(this).text());
+                    });
+                    localStorage.setItem("todo", JSON.stringify(toDoArray)); 
+                }
+
+                function loadToDo() {
+                    const savedToDo = localStorage.getItem("todo");
+                    if (savedToDo) {
+                        const toDoArray = JSON.parse(savedToDo);
+                        toDoArray.forEach(item => addToDo(item, false));
+                    }
                 }
             });
 
-            function addToDo(text) {
-                const $toDoDiv = $("<div></div>").text(text);
-                $toDoDiv.click(function () {
-                    deleteToDo($toDoDiv);
-                });
-                $("#ft_list").prepend($toDoDiv);
-            }
-
-            function deleteToDo($toDoDiv) {
-                if (confirm("Do you really want to delete this TO DO?")) {
-                    $toDoDiv.remove();
-                    saveToDo();
-                }
-            }
-
-            function saveToDo() {
-                const toDoArray = [];
-                $("#ft_list div").each(function () {
-                    toDoArray.push($(this).text());
-                });
-                localStorage.setItem("todo", JSON.stringify(toDoArray));
-            }
-
-            function loadToDo() {
-                const savedToDo = localStorage.getItem("todo");
-                if (savedToDo) {
-                    const toDoArray = JSON.parse(savedToDo);
-                    toDoArray.forEach(item => addToDo(item));
-                }
-            }
-                function addToDo(text, prepend = true) {
-                const toDoDiv = document.createElement("div");
-                toDoDiv.textContent = text;
-                toDoDiv.onclick = () => deleteToDo(toDoDiv);
-                const list = document.getElementById("ft_list");
-
-                if (prepend) {
-                    list.prepend(toDoDiv); 
-                } else {
-                    list.append(toDoDiv); 
-                }
-            }
-
-        });
         
     </script>
 </body>
