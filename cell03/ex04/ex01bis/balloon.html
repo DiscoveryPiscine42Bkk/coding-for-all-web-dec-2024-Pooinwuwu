@@ -29,51 +29,43 @@
     <div id="balloon"></div>
     <script>
         $(document).ready(function() {
-            var colors = ['red','green','blue'];
+            var colors = ['red', 'green', 'blue'];
             var colorIndex = 0;
             var balloonSize = 200;
 
-        $('#balloon').click(function(){
-            if (balloonSize >= 420) {
-                balloonSize = 200;
-
-                $('#balloon').css({
-                    'width': balloonSize + 'px',
-                    'height': balloonSize + 'px',
-                    'background-color': colors[0]
-
-                });
-                colorIndex = 0;
-            } else {
-                balloonSize += 10;
-                
-                colorIndex = (colorIndex + 1) % colors.length;
-                $('#balloon').css ({
-                    'width': balloonSize + 'px',
-                    'height': balloonSize + 'px',
-                    'background-color': colors[colorIndex]
-
-                });
-            }
-
+            $('#balloon').click(function() {
+                if (balloonSize >= 415) {
+                    balloonSize = 200;
+                    colorIndex = 0;
+                    $('#balloon').css({
+                        'width': balloonSize + 'px',
+                        'height': balloonSize + 'px',
+                        'background-color': colors[colorIndex]
+                    });
+                } else {                 
+                    balloonSize += 10;
+                    colorIndex = (colorIndex + 1) % colors.length;
+                    $('#balloon').css({
+                        'width': balloonSize + 'px',
+                        'height': balloonSize + 'px',
+                        'background-color': colors[colorIndex]
+                    });
+                }
+            });
+            $('#balloon').mouseleave(function() {
+            
+                if (balloonSize > 200) {
+                    balloonSize -= 5;
+                    colorIndex = (colorIndex - 1 + colors.length) % colors.length;
+                    $('#balloon').css({
+                        'width': balloonSize + 'px',
+                        'height': balloonSize + 'px',
+                        'background-color': colors[colorIndex]
+                    });
+                }
+            });
         });
-        $('#balloon').mouseleave(function() {
-            if (balloonSize > 200) {
-                balloonSize -= 5;
-                colorIndex = (colorIndex - 1 + colors.length) % colors.length;
-                $('#balloon').css({
-                    'width': balloonSize + 'px',
-                    'height': balloonSize + 'px',
-                    'background-color': colors[colorIndex]
 
-                });
-            }
-
-        })
-
-
-        });
-         
     </script>
 
 </body>
