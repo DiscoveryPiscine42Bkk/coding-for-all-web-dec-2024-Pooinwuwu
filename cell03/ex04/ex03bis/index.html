@@ -60,6 +60,19 @@
                     toDoArray.forEach(item => addToDo(item));
                 }
             }
+                function addToDo(text, prepend = true) {
+                const toDoDiv = document.createElement("div");
+                toDoDiv.textContent = text;
+                toDoDiv.onclick = () => deleteToDo(toDoDiv);
+                const list = document.getElementById("ft_list");
+
+                if (prepend) {
+                    list.prepend(toDoDiv); 
+                } else {
+                    list.append(toDoDiv); 
+                }
+            }
+
         });
         
     </script>
